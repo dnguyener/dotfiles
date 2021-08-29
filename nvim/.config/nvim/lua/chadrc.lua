@@ -96,6 +96,7 @@ M.plugin_status = {
    ultisnips = true, -- % snippets
    vimsnippets = true,  -- % more snippets
    cmpnvimultisnips = true, -- % ultisnippets for nvim-cmp
+   whichkey = false, -- % ultisnippets for nvim-cmp
 }
 
 -- mappings -- don't use a single keymap twice --
