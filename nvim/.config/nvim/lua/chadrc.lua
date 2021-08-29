@@ -92,6 +92,10 @@ M.plugin_status = {
    truezen = true, -- no distraction mode for nvim
    vim_fugitive = true, -- git in nvim
    vim_matchup = true, -- % magic, match it but improved
+   neorg = true, -- % Orgmode but for vim (developement)
+   ultisnips = true, -- % snippets
+   vimsnippets = true,  -- % more snippets
+   cmpnvimultisnips = true, -- % ultisnippets for nvim-cmp
 }
 
 -- mappings -- don't use a single keymap twice --
@@ -102,14 +106,14 @@ M.mappings = {
    copy_whole_file = "<C-a>", -- copy all contents of the current buffer
 
    -- navigation in insert mode, only if enabled in options
-   insert_nav = {
-      backward = "<C-h>",
-      end_of_line = "<C-e>",
-      forward = "<C-l>",
-      next_line = "<C-k>",
-      prev_line = "<C-j>",
-      top_of_line = "<C-a>",
-   },
+   -- insert_nav = {
+   --    backward = "<C-h>",
+   --    end_of_line = "<C-e>",
+   --    forward = "<C-l>",
+   --    next_line = "<C-k>",
+   --    prev_line = "<C-j>",
+   --    top_of_line = "<C-a>",
+   -- },
 
    line_number_toggle = "<leader>n", -- show or hide line number
    new_buffer = "<S-t>", -- open a new buffer
