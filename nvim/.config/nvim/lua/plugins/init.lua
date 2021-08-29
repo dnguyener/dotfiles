@@ -352,20 +352,39 @@ return packer.startup(function()
       end,
    }
    use {
-    "vhyrro/neorg",
-    branch = "unstable",
-    after = "nvim-cmp",
-    config = function()
-       require "plugins.configs.neorg"
-    end,
-    requires = { 
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    }
-}
-    use { "SirVer/ultisnips" }
-    use { "honza/vim-snippets" }
-    use { "quangnguyen30192/cmp-nvim-ultisnips",
-       after = "nvim-cmp",
-    }
+      "vhyrro/neorg",
+      disable = not plugin_status.neorg,
+      branch = "unstable",
+      after = "nvim-cmp",
+      config = function()
+         require "plugins.configs.neorg"
+      end,
+      requires = { 
+         "nvim-lua/plenary.nvim",
+         "hrsh7th/nvim-cmp",
+      }
+   }
+
+   use { 
+      "SirVer/ultisnips",
+      disable = not plugin_status.ultisnips,
+   }
+
+   use { 
+      "honza/vim-snippets",
+      disable = not plugin_status.vimsnippets,
+   }
+
+   use { 
+      "quangnguyen30192/cmp-nvim-ultisnips",
+      disable = not plugin_status.cmpnvimultisnips,
+      after = "nvim-cmp",
+   }
+
+   use { 
+      "folke/which-key.nvim", 
+      -- config = function()
+      --    require "plugins.configs.whichkey"
+      -- end,
+   }
 end)
