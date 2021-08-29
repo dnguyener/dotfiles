@@ -383,8 +383,9 @@ return packer.startup(function()
 
    use { 
       "folke/which-key.nvim", 
-      -- config = function()
-      --    require "plugins.configs.whichkey"
-      -- end,
+      disable = not plugin_status.whichkey,
+       config = function()
+          require "plugins.configs.whichkey"
+       end,
    }
 end)
