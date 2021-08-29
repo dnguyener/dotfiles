@@ -40,18 +40,6 @@ M.misc = function()
          map({ "n", "v" }, "dd", '"_dd')
       end
 
-      -- navigation within insert mode
-      if config.options.insert_nav then
-         local inav = maps.insert_nav
-
-         map("i", inav.backward, "<Left>")
-         map("i", inav.end_of_line, "<End>")
-         map("i", inav.forward, "<Right>")
-         map("i", inav.next_line, "<Up>")
-         map("i", inav.prev_line, "<Down>")
-         map("i", inav.top_of_line, "<ESC>^i")
-      end
-
       -- check the theme toggler
       if config.ui.theme_toggler then
          map(
@@ -63,27 +51,12 @@ M.misc = function()
    end
 
    local function required_mappings()
-      map("n", maps.close_buffer, ":lua require('core.utils').close_buffer() <CR>") -- close  buffer
-      map("n", maps.copy_whole_file, ":%y+ <CR>") -- copy whole file content
-      map("n", maps.new_buffer, ":enew <CR>") -- new buffer
-      map("n", maps.new_tab, ":tabnew <CR>") -- new tabs
-      map("n", maps.line_number_toggle, ":set nu! <CR>") -- toggle numbers
-      map("n", maps.save_file, ":w <CR>") -- ctrl + s to save file
-
       -- terminal mappings --
       local term_maps = maps.terminal
       -- get out of terminal mode
       map("t", term_maps.esc_termmode, "<C-\\><C-n>")
       -- hide a term from within terminal mode
       map("t", term_maps.esc_hide_termmode, "<C-\\><C-n> :lua require('core.utils').close_buffer() <CR>")
-      -- pick a hidden term
-      map("n", term_maps.pick_term, ":Telescope terms <CR>")
-      -- Open terminals
-      -- TODO this opens on top of an existing vert/hori term, fixme
-      map("n", term_maps.new_horizontal, ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>")
-      map("n", term_maps.new_vertical, ":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>")
-      map("n", term_maps.new_window, ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>")
-      -- terminal mappings end --
 
       -- Add Packer commands because we are not loading it at startup
       cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
@@ -93,12 +66,6 @@ M.misc = function()
       cmd "silent! command PackerSync lua require 'plugins' require('packer').sync()"
       cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
 
-      -- add NvChadUpdate command and mapping
-      cmd "silent! command! NvChadUpdate lua require('nvchad').update_nvchad()"
-      map("n", maps.update_nvchad, ":NvChadUpdate <CR>")
-
-      -- add ChadReload command and maping
-      -- cmd "silent! command! NvChadReload lua require('nvchad').reload_config()"
    end
 
    local function user_config_mappings()
@@ -131,77 +98,10 @@ M.bufferline = function()
    map("n", m.prev_buffer, ":BufferLineCyclePrev <CR>")
 end
 
-M.chadsheet = function()
-   local m = plugin_maps.chadsheet
-
-   map("n", m.default_keys, ":lua require('cheatsheet').show_cheatsheet_telescope() <CR>")
-   map(
-      "n",
-      m.user_keys,
-      ":lua require('cheatsheet').show_cheatsheet_telescope{bundled_cheatsheets = false, bundled_plugin_cheatsheets = false } <CR>"
-   )
-end
-
 M.comment = function()
    local m = plugin_maps.comment.toggle
    map("n", m, ":CommentToggle <CR>")
    map("v", m, ":CommentToggle <CR>")
-end
-
-M.dashboard = function()
-   local m = plugin_maps.dashboard
-
-   map("n", m.bookmarks, ":DashboardJumpMarks <CR>")
-   map("n", m.new_file, ":DashboardNewFile <CR>")
-   map("n", m.open, ":Dashboard <CR>")
-   map("n", m.session_load, ":SessionLoad <CR>")
-   map("n", m.session_save, ":SessionSave <CR>")
-end
-
-M.nvimtree = function()
-   map("n", plugin_maps.nvimtree.toggle, ":NvimTreeToggle <CR>")
-   map("n", plugin_maps.nvimtree.focus, ":NvimTreeFocus <CR>")
-end
-
-M.neoformat = function()
-   map("n", plugin_maps.neoformat.format, ":Neoformat <CR>")
-end
-
-M.telescope = function()
-   local m = plugin_maps.telescope
-
-   map("n", m.buffers, ":Telescope buffers <CR>")
-   map("n", m.find_files, ":Telescope find_files <CR>")
-   map("n", m.find_hiddenfiles, ":Telescope find_files hidden=true <CR>")
-   map("n", m.git_commits, ":Telescope git_commits <CR>")
-   map("n", m.git_status, ":Telescope git_status <CR>")
-   map("n", m.help_tags, ":Telescope help_tags <CR>")
-   map("n", m.live_grep, ":Telescope live_grep <CR>")
-   map("n", m.oldfiles, ":Telescope oldfiles <CR>")
-   map("n", m.themes, ":Telescope themes <CR>")
-end
-
-M.telescope_media = function()
-   local m = plugin_maps.telescope_media
-
-   map("n", m.media_files, ":Telescope media_files <CR>")
-end
-
-M.truezen = function()
-   local m = plugin_maps.truezen
-
-   map("n", m.ataraxis_mode, ":TZAtaraxis <CR>")
-   map("n", m.focus_mode, ":TZFocus <CR>")
-   map("n", m.minimalistic_mode, ":TZMinimalist <CR>")
-end
-
-M.vim_fugitive = function()
-   local m = plugin_maps.vim_fugitive
-
-   map("n", m.git, ":Git <CR>")
-   map("n", m.git_blame, ":Git blame <CR>")
-   map("n", m.diff_get_2, ":diffget //2 <CR>")
-   map("n", m.diff_get_3, ":diffget //3 <CR>")
 end
 
 return M

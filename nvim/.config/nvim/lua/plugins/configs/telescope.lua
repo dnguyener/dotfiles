@@ -62,10 +62,16 @@ telescope.setup {
          filetypes = { "png", "webp", "jpg", "jpeg" },
          find_cmd = "rg", -- find command (defaults to `fd`)
       },
-   },
+      project = {
+         base_dirs = {
+            {'~/git', max_depth = 10},
+         },
+         hidden_files = true,
+      },
+  },
 }
 
-local extensions = { "themes", "terms", "fzf" }
+local extensions = { "themes", "terms", "fzf", "project" }
 local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
 
 if vim.fn.executable "ueberzug" == 1 then

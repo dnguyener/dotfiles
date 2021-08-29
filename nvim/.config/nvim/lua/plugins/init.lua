@@ -231,31 +231,28 @@ return packer.startup(function()
        end,
     }
  
-    use {
-       "glepnir/dashboard-nvim",
-       disable = not plugin_status.dashboard,
-       cmd = {
-          "Dashboard",
-          "DashboardNewFile",
-          "DashboardJumpMarks",
-          "SessionLoad",
-          "SessionSave",
-       },
-       config = function()
-          require "plugins.configs.dashboard"
-       end,
-       setup = function()
-          require("core.mappings").dashboard()
-       end,
-    }
+--    use {
+--       "glepnir/dashboard-nvim",
+--       disable = not plugin_status.dashboard,
+--       cmd = {
+--          "Dashboard",
+--          "DashboardNewFile",
+--          "DashboardJumpMarks",
+--          "SessionLoad",
+--          "SessionSave",
+--       },
+--       config = function()
+--          require "plugins.configs.dashboard"
+--       end,
+--       setup = function()
+--          require("core.mappings").dashboard()
+--       end,
+ --   }
  
     use {
        "sbdchd/neoformat",
        disable = not plugin_status.neoformat,
        cmd = "Neoformat",
-       setup = function()
-          require("core.mappings").neoformat()
-       end,
     }
  
   --    use "alvan/vim-closetag" -- for html autoclosing tag
@@ -278,9 +275,6 @@ return packer.startup(function()
         config = function()
            require "plugins.configs.nvimtree"
         end,
-        setup = function()
-           require("core.mappings").nvimtree()
-        end,
      }
   
    use {
@@ -296,27 +290,14 @@ return packer.startup(function()
             config = function()
                require "plugins.configs.chadsheet"
             end,
-            setup = function()
-               require("core.mappings").chadsheet()
-            end,
          },
           {
              "nvim-telescope/telescope-fzf-native.nvim",
              run = "make",
           },
-          {
-             "nvim-telescope/telescope-media-files.nvim",
-             disable = not plugin_status.telescope_media,
-             setup = function()
-                require("core.mappings").telescope_media()
-             end,
-          },
        },
        config = function()
           require "plugins.configs.telescope"
-       end,
-       setup = function()
-          require("core.mappings").telescope()
        end,
    }
 
@@ -331,9 +312,6 @@ return packer.startup(function()
       config = function()
          require "plugins.configs.zenmode"
       end,
-      setup = function()
-         require("core.mappings").truezen()
-      end,
    }
 
    use {
@@ -347,9 +325,6 @@ return packer.startup(function()
          "Gwrite",
          "Gw",
       },
-      setup = function()
-         require("core.mappings").vim_fugitive()
-      end,
    }
    use {
       "vhyrro/neorg",
@@ -379,6 +354,10 @@ return packer.startup(function()
       "quangnguyen30192/cmp-nvim-ultisnips",
       disable = not plugin_status.cmpnvimultisnips,
       after = "nvim-cmp",
+   }
+
+   use { 
+      "nvim-telescope/telescope-project.nvim",
    }
 
    use { 
