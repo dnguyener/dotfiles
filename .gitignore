@@ -1,7 +1,1 @@
-/*
-!.gitignore
-!.tmux.conf
-!.zshrc
-!.config/
-.config/*
-!.config/nvim/
+nvim/.config/nvim/plugin/packer_compiled.lua
